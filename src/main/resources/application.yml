@@ -1,0 +1,47 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: rag-doc-qa
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:ragdb}
+    username: ${DB_USER:raguser}
+    password: ${DB_PASSWORD:ragpass}
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  # MCP server: exposes the tools in RagMcpTools over SSE on this same app/port.
+  # Default endpoints: GET /sse to open the event stream, POST /mcp/message to send calls.
+  ai:
+    mcp:
+      server:
+        name: rag-doc-qa-mcp
+        version: 1.0.0
+        type: SYNC
+
+# LLM/embedding provider settings. Defaults point at a local Ollama server
+# (free, no API key). Any OpenAI-compatible endpoint works by overriding
+# these via environment variables (OpenAI, Groq, Gemini's OpenAI-compat API, etc).
+rag:
+  openai:
+    api-key: ${LLM_API_KEY:ollama}
+    base-url: ${LLM_BASE_URL:http://localhost:11434/v1}
+    embedding-model: ${EMBEDDING_MODEL:nomic-embed-text}
+    embedding-dimensions: ${EMBEDDING_DIMENSIONS:768}
+    chat-model: ${CHAT_MODEL:llama3.2:3b}
+  chunking:
+    chunk-size-words: 500
+    chunk-overlap-words: 50
+  retrieval:
+    top-k: 4
+
+logging:
+  level:
+    com.gagandeep.ragdocqa: INFO

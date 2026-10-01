@@ -1,0 +1,12 @@
+target/
+*.class
+*.log
+.idea/
+*.iml
+.vscode/
+.env
+.DS_Store
+
+# frontend/
+node_modules/
+dist/
