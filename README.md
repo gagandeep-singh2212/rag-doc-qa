@@ -6,8 +6,7 @@ their content. Built with Spring Boot + pgvector on the backend and a React
 frontend, with the RAG pipeline also exposed as MCP (Model Context Protocol)
 tools so any MCP-compatible AI client can call it directly.
 
-<!-- Add a screenshot of the running UI here before sharing this repo, e.g.:
-![App screenshot](docs/screenshot.png) -->
+![alt text](image.png)
 
 ## Project layout
 
