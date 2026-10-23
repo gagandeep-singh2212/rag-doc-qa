@@ -29,7 +29,7 @@ using the same Spring Boot patterns used in day-to-day backend work.
 ## Quick start
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/gagandeep-singh2212/rag-doc-qa
 cd rag-doc-qa
 docker compose up --build      # backend + Postgres + Ollama, one command
 ```
